@@ -1,4 +1,6 @@
 # Temperature adjustment of GE/RT for constant excess enthalpy.
+# Inputs: gas constant R, start and end temperatures, start GE/RT, and HE.
+# Output: estimated end GE/RT. Assumes HE is constant.
 R = float(input("Gas constant R: "))
 T0 = float(input("Start temperature T0: "))
 T1 = float(input("End temperature T1: "))

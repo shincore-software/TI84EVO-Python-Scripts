@@ -1,4 +1,6 @@
-# Binary activity-coefficient models.
+# Calculate binary activity coefficients with a selected model.
+# Inputs: model, liquid fraction x1, and model parameters.
+# Output: ln(gamma1), gamma1, ln(gamma2), and gamma2.
 from math import exp, log
 
 print("Model:")

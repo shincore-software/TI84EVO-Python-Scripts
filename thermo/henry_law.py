@@ -1,5 +1,7 @@
 # Henry's law solver.
 # Formula: y * P = x * H
+# Inputs: choose y, P, x, or H, then enter the other three values.
+# Output: the selected value. Keep pressure units consistent.
 
 print("Find value:")
 print("1: y")

@@ -1,4 +1,6 @@
 # Infinite-dilution activity coefficients and Henry constants.
+# Inputs: model, component, model parameters, and saturation pressure.
+# Output: ln(gamma infinity), gamma infinity, and Henry constant H.
 from math import exp, log
 
 print("Model:")

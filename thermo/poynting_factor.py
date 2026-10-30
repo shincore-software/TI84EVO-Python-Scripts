@@ -1,4 +1,6 @@
 # Poynting correction factor.
+# Inputs: select factor, volume, pressure, saturation pressure, or temperature.
+# Enter the other values and gas constant R. Output: selected result.
 from math import exp, log
 
 print("Find value:")

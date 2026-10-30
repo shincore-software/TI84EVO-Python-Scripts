@@ -1,57 +1,52 @@
-# Ideal or non-ideal dew pressure solver.
-# Formula: 1/P = sum(y_i / (gamma_i * Psat_i))
+# Ideal or non-ideal bubble pressure solver.
+# Formula: P = sum(x_i * gamma_i * Psat_i)
+# Inputs: component count, x, gamma, and Psat for each component.
+# Select total pressure P or one component x, gamma, or Psat.
 
 n = int(input("Number of components: "))
 if n < 1:
     print("Need at least one component")
 else:
-    y = []
+    x = []
     gamma = []
     psat = []
-    total_y = 0.0
+    total_x = 0.0
     i = 0
     while i < n:
         print("Component:")
         print(i + 1)
-        yi = float(input("y: "))
+        xi = float(input("x: "))
         gi = float(input("gamma: "))
         pi = float(input("Psat: "))
-        y.append(yi)
+        x.append(xi)
         gamma.append(gi)
         psat.append(pi)
-        total_y = total_y + yi
+        total_x = total_x + xi
         i = i + 1
 
     print("Find value:")
     print("1: Total pressure P")
-    print("2: One component y, gamma, or Psat")
+    print("2: One component x, gamma, or Psat")
     mode = input("Select 1 or 2: ")
 
     if mode == "1":
-        if abs(total_y - 1.0) > 0.001:
-            print("y values must sum to 1")
+        if abs(total_x - 1.0) > 0.001:
+            print("x values must sum to 1")
         else:
-            den = 0.0
+            P = 0.0
             i = 0
             while i < n:
-                if gamma[i] <= 0 or psat[i] <= 0:
-                    den = 0.0
-                    i = n
-                else:
-                    den = den + y[i] / (gamma[i] * psat[i])
-                    i = i + 1
-            if den <= 0:
-                print("Need positive gamma and Psat")
-            else:
-                print("Dew pressure:")
-                print(1.0 / den)
+                P = P + x[i] * gamma[i] * psat[i]
+                i = i + 1
+            print("Bubble pressure:")
+            print(P)
     elif mode == "2":
         k = int(input("Component number: ")) - 1
         if k < 0 or k >= n:
             print("Invalid component")
         else:
             print("Solve for:")
-            print("1: y")
+            print("1: x")
             print("2: gamma")
             print("3: Psat")
             target = input("Select 1-3: ")
@@ -60,24 +55,29 @@ else:
             i = 0
             while i < n:
                 if i != k:
-                    other = other + y[i] / (gamma[i] * psat[i])
+                    other = other + x[i] * gamma[i] * psat[i]
                 i = i + 1
-            rem = 1.0 / P - other
             if target == "1":
-                print("y:")
-                print(rem * gamma[k] * psat[k])
+                den = gamma[k] * psat[k]
+                if den == 0:
+                    print("gamma*Psat cannot be zero")
+                else:
+                    print("x:")
+                    print((P - other) / den)
             elif target == "2":
-                if rem == 0 or psat[k] == 0:
-                    print("Cannot solve for gamma")
+                den = x[k] * psat[k]
+                if den == 0:
+                    print("x*Psat cannot be zero")
                 else:
                     print("gamma:")
-                    print(y[k] / (rem * psat[k]))
+                    print((P - other) / den)
             elif target == "3":
-                if rem == 0 or gamma[k] == 0:
-                    print("Cannot solve for Psat")
+                den = x[k] * gamma[k]
+                if den == 0:
+                    print("x*gamma cannot be zero")
                 else:
                     print("Psat:")
-                    print(y[k] / (rem * gamma[k]))
+                    print((P - other) / den)
             else:
                 print("Select 1, 2, or 3")
     else:

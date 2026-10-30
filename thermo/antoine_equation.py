@@ -1,6 +1,7 @@
 # Antoine equation calculator.
 # Formula: ln(P) = A - B / (T + C)
-# Use units that match the source of A, B, and C.
+# Inputs: choose P or T, enter A, B, C, and the known P or T.
+# Output: the unknown P or T. Use units that match A, B, and C.
 
 from math import exp, log
 

@@ -1,11 +1,13 @@
-# Dew-point temperature solver.
+# Bubble-point temperature solver.
+# Inputs: pressure, component count, temperature search range, x, gamma,
+# and Antoine A, B, C for each component. Output: bubble-point temperature.
 from math import exp
 
 P = float(input("Pressure P: "))
 n = int(input("Number of components: "))
 lo = float(input("Low temperature: "))
 hi = float(input("High temperature: "))
-y = []
+x = []
 gamma = []
 A = []
 B = []
@@ -14,7 +16,7 @@ i = 0
 while i < n:
     print("Component:")
     print(i + 1)
-    y.append(float(input("Vapor fraction y: ")))
+    x.append(float(input("Liquid fraction x: ")))
     gamma.append(float(input("Activity coefficient: ")))
     A.append(float(input("Antoine A: ")))
     B.append(float(input("Antoine B: ")))
@@ -25,10 +27,10 @@ def residual(T):
     value = -1.0
     j = 0
     while j < n:
-        if T + C[j] == 0 or gamma[j] <= 0:
+        if T + C[j] == 0:
             return 1e30
         psat = exp(A[j] - B[j] / (T + C[j]))
-        value = value + y[j] * P / (gamma[j] * psat)
+        value = value + x[j] * gamma[j] * psat / P
         j = j + 1
     return value
 
@@ -51,5 +53,5 @@ else:
                 lo = mid
                 flo = fm
             count = count + 1
-        print("Dew temperature:")
+        print("Bubble temperature:")
         print((lo + hi) / 2.0)

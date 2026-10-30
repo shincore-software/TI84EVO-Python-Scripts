@@ -1,4 +1,6 @@
-# Binary azeotrope checks.
+# Test for a binary azeotrope or calculate its Margules composition.
+# Inputs: saturation pressures and infinite-dilution coefficients, or A.
+# Output: relative-volatility limits or azeotrope liquid fraction x1.
 from math import log
 
 print("Mode:")

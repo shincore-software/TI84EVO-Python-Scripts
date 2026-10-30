@@ -1,4 +1,6 @@
 # Gibbs-Duhem data residual calculator.
+# Inputs: point count, x1, measured gamma values, and model gamma values.
+# Output: GE/RT and the activity-coefficient residual for each point.
 from math import log
 
 n = int(input("Number of data points: "))

@@ -1,4 +1,6 @@
 # Local binary-liquid stability check.
+# Inputs: liquid fraction x1 and second derivative of GE/RT.
+# Output: stability curvature and local stability result.
 x1 = float(input("Liquid fraction x1: "))
 d2 = float(input("Second derivative of GE/RT: "))
 if x1 <= 0 or x1 >= 1:

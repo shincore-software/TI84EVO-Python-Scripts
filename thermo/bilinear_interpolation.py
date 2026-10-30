@@ -1,7 +1,6 @@
 # Bilinear interpolation for one rectangular grid cell.
-# Enter x0 < x1 and y0 < y1.
-# Enter z00 at (x0, y0), z10 at (x1, y0),
-# z01 at (x0, y1), and z11 at (x1, y1).
+# Inputs: cell bounds, four corner z values, and query coordinates x and y.
+# Require x0 < x1 and y0 < y1. Output: estimated z inside the cell.
 
 def bilinear(x0, x1, y0, y1, z00, z10, z01, z11, x, y):
     tx = (x - x0) / (x1 - x0)

@@ -1,4 +1,6 @@
 # Isothermal flash solver using supplied K values.
+# Inputs: component count, feed fractions z, and equilibrium ratios K.
+# Output: vapor fraction V and liquid and vapor fractions x and y.
 
 n = int(input("Number of components: "))
 if n < 1:

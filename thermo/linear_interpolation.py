@@ -1,5 +1,6 @@
 # Linear interpolation between two points.
-# The program accepts x values between x0 and x1.
+# Inputs: points (x0, y0), (x1, y1), and a query x between x0 and x1.
+# Output: estimated y. The program does not calculate outside the interval.
 
 x0 = float(input("x0: "))
 y0 = float(input("y0: "))
