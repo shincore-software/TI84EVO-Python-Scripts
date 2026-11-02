@@ -12,11 +12,16 @@ gamma = []
 A = []
 B = []
 C = []
+total = 0.0
+valid = True
 i = 0
 while i < n:
     print("Component:")
     print(i + 1)
     x.append(float(input("Liquid fraction x: ")))
+    total = total + x[i]
+    if x[i] < 0:
+        valid = False
     gamma.append(float(input("Activity coefficient: ")))
     A.append(float(input("Antoine A: ")))
     B.append(float(input("Antoine B: ")))
@@ -36,6 +41,8 @@ def residual(T):
 
 if n < 1 or P <= 0 or lo >= hi:
     print("Check pressure, component count, and range")
+elif not valid or abs(total - 1.0) > 0.001:
+    print("Fractions must be non-negative and sum to 1")
 else:
     flo = residual(lo)
     fhi = residual(hi)

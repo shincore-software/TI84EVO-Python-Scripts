@@ -24,6 +24,10 @@ if mode == "1":
         print(exp(Vl * (P - Psat) / (R * T)))
 elif mode in ("2", "3", "4", "5"):
     F = float(input("Poynting factor: "))
+    if mode == "5":
+        while F <= 0 or F == 1:
+            print("Factor must be positive and not 1")
+            F = float(input("Poynting factor: "))
     R = float(input("Gas constant R: "))
     T = float(input("Temperature T: "))
     Vl = float(input("Liquid molar volume: "))

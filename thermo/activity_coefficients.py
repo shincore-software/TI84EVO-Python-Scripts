@@ -30,12 +30,23 @@ else:
     elif mode == "3":
         A12 = float(input("A12: "))
         A21 = float(input("A21: "))
-        if A12 == 0 or A21 == 0:
+        while A12 == 0 or A21 == 0:
             print("A12 and A21 cannot be zero")
-            ok = False
-        else:
+            A12 = float(input("A12: "))
+            A21 = float(input("A21: "))
+        if ok:
             q1 = 1.0 + A12 * x1 / (A21 * x2)
             q2 = 1.0 + A21 * x2 / (A12 * x1)
+            while q1 == 0 or q2 == 0:
+                print("Parameters give a zero divisor")
+                A12 = float(input("A12: "))
+                A21 = float(input("A21: "))
+                while A12 == 0 or A21 == 0:
+                    print("A12 and A21 cannot be zero")
+                    A12 = float(input("A12: "))
+                    A21 = float(input("A21: "))
+                q1 = 1.0 + A12 * x1 / (A21 * x2)
+                q2 = 1.0 + A21 * x2 / (A12 * x1)
             lng1 = A12 / (q1 * q1)
             lng2 = A21 / (q2 * q2)
     elif mode == "4":

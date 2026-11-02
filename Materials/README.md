@@ -1,95 +1,86 @@
-# Materials
+# Materials equation solvers
 
-This folder is for materials science programs.
+Select the unknown before you enter the known values. The programs do not convert units. Each prompt gives the required units. A value with no units is dimensionless.
 
-## Molecular weight averages
+## Molecular weights
 
-Enter each molecular weight in the same units. The result uses those units.
+Use masses in g/mol and mole fractions with no units. Fractions must be non-negative and sum to one within 0.001.
 
-### Number-average molecular weight, Mn
+The number-average program uses Mn = sum(xi*Mi). The weight-average program uses Mw = sum(xi*Mi^2)/sum(xi*Mi). Each program can find the average, one component mass, or one component fraction. Do not enter a placeholder for the unknown.
 
-Use `number_average_molecular_weight.py`. Enter the number of components. For each component, enter molecular weight `Mi` and mole fraction `xi`. The mole fractions must sum to one.
-
-$$M_n=\sum_i x_iM_i$$
-
-This calculation gives each molecule the same weight in the average.
-
-### Weight-average molecular weight, Mw
-
-Use `weight_average_molecular_weight.py`. Enter the number of components. For each component, enter molecular weight `Mi` and mole fraction `xi`. The program calculates weight fractions `wi` and then calculates `Mw`.
-
-Convert mole fraction to weight fraction with:
-
-$$w_i=\frac{x_iM_i}{\sum_j x_jM_j}$$
-
-$$M_w=\sum_i w_iM_i$$
-
-This calculation gives more influence to components with more mass.
+A missing fraction follows from the fraction sum. The program also checks the supplied average. A zero fraction cannot give a unique component mass. The weight-average equation can give two positive masses. The program shows both. Use other data to select the correct mass.
 
 ## Degree of polymerization
 
-Use `degree_of_polymerization.py`. Select number average or weight average. Enter `Mn` or `Mw`. Then enter the number of mer types. For each mer type, enter its chain fraction `xj` and molecular weight `Mj`. Chain fractions must sum to one. Use the same mass units for all molecular weights.
-
-First calculate `Mbar`, the average molecular weight (weight) of one mer:
-
-$$\bar M=\sum_j x_jM_j$$
-
-Then calculate degree of polymerization:
-
-$$DP_n=\frac{M_n}{\bar M},\qquad DP_w=\frac{M_w}{\bar M}$$
-
-The result is dimensionless. For a homopolymer, use one mer type with chain fraction one.
+Use M = DP*Mbar. Select DP, M, or Mbar. Use Mn with DPn or Mw with DPw. Mass values use g/mol. DP has no units. Enter Mbar directly or calculate it from mer fractions and mer masses. Mer fractions have no units and must sum to one.
 
 ## Polymer chain length
 
-Use `polymer_chain_length.py`. Select `L`, `r`, or both. Enter bond length `d` and number of bonds `N`. Enter backbone angle `theta` in degrees when you calculate `L`. Use the units for `d` as the units for the length results.
-
-Select the option to find `d` when you know `r` and `N`:
-
-$$d=\frac{r}{\sqrt{N}}$$
-
-Calculate the projected chain length:
-
-$$L=Nd\sin\left(\frac{\theta}{2}\right)$$
-
-Calculate the average end-to-end distance for a random chain:
-
-$$r=d\sqrt{N}$$
-
-The second equation is a random-chain estimate. Use the angle definition and assumptions from your course.
+Select L = N*d*sin(theta/2) or r = d*sqrt(N). Then select any variable in that equation. Enter lengths in nm and the bond angle in degrees. N is a bond count with no units. A calculated N is an estimate; check whether an integer bond count fits your data. The angle must be greater than zero and less than 180 degrees. The random-chain equation is a model estimate.
 
 ## Diffusion
 
-Use `diffusion.py`. Select `D`, `D0`, `Qd`, `T`, or `C(x,t)` as the value to calculate. Enter the other values. The program uses `R = 8.314 J/(mol K)`. Enter temperature in kelvin and activation energy `Qd` in joules per mole. Enter the diffusivity units; use the same units for `D` and `D0`. The result includes its units. The program does not convert units.
+Modes 1 through 4 solve D = D0*exp(-Qd/(R*T)) for D, D0, Qd, or T. R = 8.314 J/(mol*K). Enter Qd in J/mol and T in K. Enter the same diffusivity units for D and D0.
 
-$$D=D_0\exp\left(-\frac{Q_d}{RT}\right)$$
+Mode 5 calculates concentration from D0, Qd, and T. Use length and time units that match the diffusivity units.
 
-Select `C(x,t)` to calculate concentration at depth `x` and time `t`. Enter `D0`, `Qd`, `T`, `x`, `t`, initial concentration `C0`, and constant surface concentration `Cs`. Use matching units so `D*t` has units of length squared. For this mode, the program uses the semi-infinite-solid solution with constant surface concentration:
+Mode 6 solves C = C0 + (Cs-C0)*erfc(x/(2*sqrt(D*t))) for C, C0, Cs, x, t, or D. Enter D in m^2/s, x in m, and t in s. Select one concentration unit and use it for all concentrations. The model requires constant D, uniform initial concentration C0, constant surface concentration Cs, and a semi-infinite solid. Use an Arrhenius mode first if you need D from temperature.
 
-$$\frac{C(x,t)-C_0}{C_s-C_0}=\operatorname{erfc}\left(\frac{x}{2\sqrt{Dt}}\right)=1-\operatorname{erf}\left(\frac{x}{2\sqrt{Dt}}\right)$$
+The program uses an erfc approximation. Boundary values can give no unique finite answer. The program reports those cases.
 
-The program uses an approximation for `erfc`. This solution assumes constant `D`, a uniform initial concentration, and a surface concentration that stays constant.
+## Parabolic rate law
 
-Use `parabolic_rate_law.py` to solve for `delta_m`, `Kp`, or time `t`:
-
-$$\Delta m=\sqrt{K_p t}$$
-
-The program uses `delta_m` in kg/m^2, time in seconds, and `Kp` in kg^2/(m^4 s). Here, `delta_m` means mass gain per unit area. Convert input values to these units before you enter them. The program does not convert units.
+Solve delta_m = sqrt(Kp*t) for any variable. Enter mass gain per unit area in kg/m^2, Kp in kg^2/(m^4*s), and time in seconds.
 
 ## Error function
 
-Use `erf_solver.py` to calculate approximate `erf(x)` and `erfc(x)`, or to find `lambda` from an area or diffusion concentration ratio. Select the calculation when the program starts. The calculator's TI-Python math module does not list these functions, so the program uses an approximation.
+Use erf_solver.py for erf, erfc, inverse erf, or lambda from a diffusion ratio. Use inverse_erf_solver.py for the inverse calculations. All inputs and outputs have no units. The programs use numerical approximations.
 
-The inverse erf option solves `erf(lambda) = area`. The diffusion option solves:
+## Calculator check
 
-$$\frac{C-C_0}{C_s-C_0}=\operatorname{erfc}(\lambda)=1-\operatorname{erf}(\lambda)$$
+These changes have desktop Python checks. Operation on the TI-84 Evo is unverified. Check the math functions, prompts, and results on your calculator and OS before use.
 
-For the diffusion option, enter a ratio greater than zero and at most one. To use the inverse erf option, enter an area greater than -1 and less than 1. The result is dimensionless.
 
-### Fraction terms
+## Additional equation solvers
 
-- **Mole fraction** `x_i`: moles of component `i` divided by total moles.
-- **Chain fraction** `x_j`: number of mer units of type `j` divided by the total number of mer units in the chain composition. Use this fraction to calculate `Mbar`.
-- **Weight fraction** `w_i`: mass of component `i` divided by total mass. A heavier mer has a larger weight fraction than its chain fraction.
+Each program lets you select the unknown. Use the units in its prompts. Temperature differences in K have the same numerical value as differences in degrees Celsius. Use K for absolute temperatures.
 
-For the weight-fraction equation, `M_i` is the molecular weight of component `i`. The subscripts identify the components in each sum.
+| Program | Equation | Units |
+|---|---|---|
+| percent_crystallinity.py | Xc = 100*rhoc*(rhos-rhoa)/(rhos*(rhoc-rhoa)) | Xc in percent; densities in kg/m^3 |
+| sensible_heat.py | Q = m*cp*(Tf-Ti) | J, kg, J/(kg*K), K |
+| heating_power.py | Q = P*t | J, W, s |
+| latent_heat.py | Q = m*L | J, kg, J/kg |
+| linear_expansion.py | dL = alpha*L0*dT | m, 1/K, m, K |
+| volume_expansion.py | dV = alphav*V0*dT | m^3, 1/K, m^3, K |
+| heat_conduction.py | q = k*A*(Th-Tc)/ell | W, W/(m*K), m^2, K, m |
+| thermal_diffusivity.py | a = k/(rho*cp) | m^2/s, W/(m*K), kg/m^3, J/(kg*K) |
+| thermal_penetration.py | x = sqrt(a*t) | m, m^2/s, s |
+| fick_first_law.py | J = -D*(C2-C1)/(x2-x1) | kg/(m^2*s), m^2/s, kg/m^3, m |
+| amount_transported.py | m = J*A*t | kg, kg/(m^2*s), m^2, s |
+| nernst_potential.py | E = E0 + R*T*ln(C)/(n*F) | V, K; n and C have no units |
+| cell_voltage.py | Ecell = Ecath-Ean | V |
+| faraday_law.py | m = I*t*M/(n*F) | kg, A, s, kg/mol; n has no units |
+| molar_concentration.py | C = m/(M*V) | mol/L, g, g/mol, L |
+| oxide_thickness.py | x = dmA/rho*(a*MM+b*MO)/(b*MO) | m, kg/m^2, kg/m^3; matched molar masses |
+| corrosion_depth.py | x = m/(rho*A) | m, kg, kg/m^3, m^2 |
+| dispersity.py | PDI = Mw/Mn | PDI has no units; masses in g/mol |
+| fraction_conversion.py | wi = xi*Mi/sum(xi*Mi); xi = (wi/Mi)/sum(wi/Mi) | Fractions have no units; masses in g/mol |
+
+The weight-average program also accepts weight fractions and uses Mw = sum(wi*Mi).
+
+The crystallinity equation gives a mass percentage from density. It assumes a material with crystalline and amorphous regions and known phase densities. The expansion equations assume a constant coefficient over the temperature range. The conduction equation assumes steady, one-dimensional flow through a plane layer with constant conductivity. The penetration equation is an estimate, not a temperature-profile solution.
+
+The Nernst program uses the supplied plus-sign half-cell equation. C means dimensionless activity relative to a standard state. A concentration ratio can replace activity only under the ideal-solution approximation. Use the equation sign and reaction convention that match your half reaction. R is in J/(mol*K) and F is in C/mol. Faraday's law assumes that all current causes the stated reaction.
+
+For oxide thickness, dmA is oxygen mass gain per unit area. The oxide formula is M_a O_b. The program solves thickness, oxygen mass gain per area, or oxide density; a, b, and molar masses are known inputs. Uniform corrosion depth assumes uniform mass loss over the stated area.
+
+All new programs require the TI-84 Evo Python App. Their operation on the calculator and its OS remains unverified. No third-party packages or shared program imports are required.
+
+## Desktop checks
+
+Run `python tests/check_materials.py` from the repository root. This checks forward and inverse calculations, fraction conversion, and selected invalid inputs. Desktop checks do not confirm calculator support.
+
+## TI-Python audit
+
+Read [TI_AUDIT.md](TI_AUDIT.md) for the evidence, corrections, transfer limits, and device checks. Run TICHECK.py on the calculator before the solvers. Component distribution programs accept up to 20 components.

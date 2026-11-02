@@ -1,46 +1,52 @@
-# Calculate projected chain length and average end-to-end distance.
-# Select L, r, or both. Enter the values that the selected calculation needs.
-# Inputs: bond length d, bond count N, and angle theta in degrees for L.
-# Output: selected chain length value or values.
-
-from math import radians, sin, sqrt
-
-print("Find value:")
-print("1: Projected chain length L")
-print("2: Average end-to-end distance r")
-print("3: Find both L and r")
-print("4: Find d from r and N")
-mode = input("Select 1-4: ")
-
-if mode not in ("1", "2", "3", "4"):
-    print("Select 1, 2, 3, or 4")
-elif mode == "4":
-    r = float(input("Average end-to-end distance r: "))
-    N = int(input("Number of bonds N: "))
-    if r <= 0 or N <= 0:
-        print("r and N must be positive")
+# Solve the projected-chain or random-chain equation.
+from math import sin, asin, sqrt, radians, degrees
+print("Lengths: nm. Angle: deg.")
+print("N: bond count (no units).")
+print("1: L=N*d*sin(theta/2)")
+print("2: r=d*sqrt(N)")
+eq = input("Equation 1 or 2: ")
+if eq in ("1", "2"):
+    names = ["L", "N", "d", "theta"] if eq == "1" else ["r", "d", "N"]
+    units = {"L":"nm", "r":"nm", "d":"nm", "N":"no units", "theta":"deg"}
+    for name in names:
+        print(name)
+    target = input("Find variable: ")
+    if target not in names:
+        print("Invalid selection")
     else:
-        d = r / sqrt(N)
-        print("Bond length d:")
-        print(d)
-else:
-    d = float(input("Bond length d: "))
-    N = int(input("Number of bonds N: "))
-    if d <= 0 or N <= 0:
-        print("d and N must be positive")
-    elif mode == "1" or mode == "3":
-        theta = float(input("Angle deg (sp3 ~109): "))
-        if theta <= 0 or theta >= 180:
-            print("theta must be between 0 and 180 deg")
+        v = {}
+        valid = True
+        for name in names:
+            if name != target:
+                v[name] = float(input(name + " (" + units[name] + "): "))
+                if v[name] <= 0 or (name == "theta" and v[name] >= 180):
+                    valid = False
+        if not valid:
+            print("Need positive values; theta < 180")
         else:
-            L = N * d * sin(radians(theta / 2.0))
-            print("Projected chain length L:")
-            print(L)
-            if mode == "3":
-                r = d * sqrt(N)
-                print("Average end-to-end distance r:")
-                print(r)
-    else:
-        r = d * sqrt(N)
-        print("Average end-to-end distance r:")
-        print(r)
+            answer = 0.0
+            if eq == "2":
+                if target == "r":
+                    answer = v["d"] * sqrt(v["N"])
+                elif target == "d":
+                    answer = v["r"] / sqrt(v["N"])
+                else:
+                    answer = (v["r"] / v["d"]) ** 2
+            elif target == "theta":
+                q = v["L"] / (v["N"] * v["d"])
+                if q >= 1:
+                    valid = False
+                    print("Need 0 < L/(N*d) < 1")
+                else:
+                    answer = 2 * degrees(asin(q))
+            elif target == "L":
+                answer = v["N"] * v["d"] * sin(radians(v["theta"] / 2))
+            elif target == "N":
+                answer = v["L"] / (v["d"] * sin(radians(v["theta"] / 2)))
+            else:
+                answer = v["L"] / (v["N"] * sin(radians(v["theta"] / 2)))
+            if valid:
+                print(target + " (" + units[target] + "):")
+                print(answer)
+else:
+    print("Select 1 or 2")

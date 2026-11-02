@@ -44,6 +44,27 @@ def inverse_erf(area):
     return (low + high) / 2.0
 
 
+def inverse_erfc(ratio):
+    # Find x >= 0 where erfc_approx(x) is close to ratio.
+    if ratio == 1.0:
+        return 0.0
+    low = 0.0
+    high = 1.0
+    count = 0
+    while erfc_approx(high) > ratio and count < 32:
+        high = high * 2.0
+        count = count + 1
+    for i in range(40):
+        mid = (low + high) / 2.0
+        if mid == low or mid == high:
+            break
+        if erfc_approx(mid) > ratio:
+            low = mid
+        else:
+            high = mid
+    return (low + high) / 2.0
+
+
 print("Select calculation:")
 print("1: erf(x) and erfc(x)")
 print("2: inverse erf from area")
@@ -51,25 +72,25 @@ print("3: lambda from diffusion ratio")
 mode = input("Select 1, 2, or 3: ")
 
 if mode == "1":
-    x = float(input("x: "))
+    x = float(input("x (no units): "))
     print("Approximate erf(x):")
     print(erf_approx(x))
     print("Approximate erfc(x):")
     print(erfc_approx(x))
 elif mode == "2":
-    area = float(input("Area (-1 to 1): "))
+    area = float(input("Area (-1 to 1, no units): "))
     if area <= -1.0 or area >= 1.0:
         print("Area must be greater than -1 and less than 1")
     else:
-        print("lambda:")
+        print("lambda (no units):")
         print(inverse_erf(area))
 elif mode == "3":
-    ratio = float(input("(C-C0)/(Cs-C0): "))
+    ratio = float(input("(C-C0)/(Cs-C0) (no units): "))
     if ratio <= 0.0 or ratio > 1.0:
         print("Ratio must be greater than 0 and at most 1")
     else:
         # The diffusion solution gives ratio = erfc(lambda) = 1 - erf(lambda).
-        print("lambda:")
-        print(inverse_erf(1.0 - ratio))
+        print("lambda (no units):")
+        print(inverse_erfc(ratio))
 else:
     print("Select 1, 2, or 3")
