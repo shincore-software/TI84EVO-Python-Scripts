@@ -23,11 +23,13 @@ def erfc_approx(z):
     return poly * exp(-z * z)
 
 def main():
-    print("1: Find D")
-    print("2: Find D0")
-    print("3: Find Qd")
-    print("4: Find T")
-    print("5: Find C(x,t)")
+    print('Diffusion')
+    print('D=D0*exp(-Qd/(R*T))')
+    print("1: D (m^2/s)")
+    print("2: D0 (m^2/s)")
+    print("3: Qd (J/mol)")
+    print("4: T (K)")
+    print("5: C(x,t) (kg/m^3)")
     print("6: Solve C equation")
     mode = input("Select 1-6: ")
     
@@ -104,6 +106,9 @@ def main():
         cu = "kg/m^3"
         names = ["C", "C0", "Cs", "x", "t", "D"]
         units = {"C":cu, "C0":cu, "Cs":cu, "x":"m", "t":"s", "D":"m^2/s"}
+        print("Diffusion concentration")
+        print("C=C0+(Cs-C0)*erfc(z)")
+        print("z=x/(2*sqrt(D*t))")
         for i in range(6):
             print(str(i + 1) + ": " + names[i])
         choice = input("Find 1-6: ")

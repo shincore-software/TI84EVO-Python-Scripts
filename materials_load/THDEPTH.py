@@ -4,9 +4,11 @@ from math import sqrt
 
 
 def main():
-    print("1 x: depth (m)")
-    print("2 a: diffusivity (m^2/s)")
-    print("3 t: time (s)")
+    print('Thermal penetration estimate')
+    print('x=sqrt(a*t)')
+    print("1: x (m)")
+    print("2: a (m^2/s)")
+    print("3: t (s)")
     n = input("Select 1-3: ")
     if n == "1":
         u = "x"

@@ -1,9 +1,11 @@
 # Latent heat
 
 def main():
-    print("1 Q: heat (J)")
-    print("2 m: mass (kg)")
-    print("3 L: latent heat (J/kg)")
+    print('Latent heat')
+    print('Q=m*L')
+    print("1: Q (J)")
+    print("2: m (kg)")
+    print("3: L (J/kg)")
     n = input("Select 1-3: ")
     if n == "1":
         u = "Q"

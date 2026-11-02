@@ -2,17 +2,19 @@
 # Solve the projected-chain or random-chain equation.
 from math import sin, asin, sqrt, radians, degrees
 
+print("Polymer chain length")
 print("1: L=N*d*sin(theta/2)")
 print("2: r=d*sqrt(N)")
 eq = input("Equation 1 or 2: ")
 if eq in ("1", "2"):
     names = ["L", "N", "d", "theta"] if eq == "1" else ["r", "d", "N"]
     units = {"L":"nm", "r":"nm", "d":"nm", "N":"no units", "theta":"deg"}
-    labels = (["L: projected length (nm)", "N: bond count",
-               "d: bond length (nm)", "theta: angle (deg)"]
-              if eq == "1" else ["r: chain length (nm)",
-                                  "d: bond length (nm)", "N: bond count"])
-    print("Find:")
+    labels = (["L (nm)", "N (no units)",
+               "d (nm)", "theta (deg)"]
+              if eq == "1" else ["r (nm)", "d (nm)",
+                                  "N (no units)"])
+    print("Projected chain length" if eq == "1" else "Random-chain distance")
+    print("L=N*d*sin(theta/2)" if eq == "1" else "r=d*sqrt(N)")
     for i in range(len(names)):
         print(str(i + 1) + ": " + labels[i])
     choice = input("Find 1-" + str(len(names)) + ": ")

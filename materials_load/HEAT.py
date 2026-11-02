@@ -1,11 +1,13 @@
 # Sensible heat
 
 def main():
-    print("1 Q: heat (J)")
-    print("2 m: mass (kg)")
-    print("3 cp: heat cap (J/kg/K)")
-    print("4 Tf: final temp (K)")
-    print("5 Ti: start temp (K)")
+    print('Sensible heat')
+    print('Q=m*cp*(Tf-Ti)')
+    print("1: Q (J)")
+    print("2: m (kg)")
+    print("3: cp (J/kg/K)")
+    print("4: Tf (K)")
+    print("5: Ti (K)")
     n = input("Select 1-5: ")
     if n == "1":
         u = "Q"

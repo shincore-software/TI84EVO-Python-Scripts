@@ -1,6 +1,9 @@
 # Fraction conversion
 
 # Convert mole fractions and weight fractions.
+print("Fraction conversion")
+print("wi=xi*Mi/sum(xj*Mj)")
+print("xi=(wi/Mi)/sum(wj/Mj)")
 print('1: Mole to weight')
 print('2: Weight to mole')
 mode = input("Select 1-2: ")

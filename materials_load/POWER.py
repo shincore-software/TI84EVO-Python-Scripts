@@ -1,9 +1,11 @@
 # Heating power
 
 def main():
-    print("1 Q: heat (J)")
-    print("2 P: power (W)")
-    print("3 t: time (s)")
+    print('Heating power')
+    print('Q=P*t')
+    print("1: Q (J)")
+    print("2: P (W)")
+    print("3: t (s)")
     n = input("Select 1-3: ")
     if n == "1":
         u = "Q"

@@ -1,11 +1,13 @@
 # Degree of polymerization
 
 # Solve M = DP * Mbar. Use one average type throughout.
+print('Degree of polymerization')
+print('M=DP*Mbar')
 print('Use Mn with DPn or Mw with\nDPw.')
-print('Mass values: g/mol. DP: no\nunits.')
-print('1: DP')
-print('2: M')
-print('3: Mbar')
+
+print('1: DP (no units)')
+print('2: M (g/mol)')
+print('3: Mbar (g/mol)')
 mode = input("Select 1-3: ")
 if mode in ("1", "2", "3"):
     valid = True

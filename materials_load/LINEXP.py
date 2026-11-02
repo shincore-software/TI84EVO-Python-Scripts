@@ -1,10 +1,12 @@
 # Linear expansion
 
 def main():
-    print("1 dL: length change (m)")
-    print("2 a: alpha (1/K)")
-    print("3 L0: start length (m)")
-    print("4 dT: temp change (K)")
+    print('Linear thermal expansion')
+    print('dL=alpha*L0*dT')
+    print("1: dL (m)")
+    print("2: a (1/K)")
+    print("3: L0 (m)")
+    print("4: dT (K)")
     n = input("Select 1-4: ")
     if n == "1":
         u = "dL"

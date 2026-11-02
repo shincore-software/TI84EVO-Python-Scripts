@@ -2,7 +2,7 @@
 
 This repository contains Python programs for the TI-84 Evo. The Python App uses Python syntax with calculator-specific limits. It does not use every feature from desktop Python.  
   
-please note, this repository is optimized to display well the TI84 EVO. The programs will run on any enabled python enabled TI calculator, but the menus and screens are optimized for a screen size of 30 charaters wide and 11 charaters tall. 
+Please note, this repository is optimized to display well the TI84 EVO. The programs will run on any enabled python enabled TI calculator, but the menus and screens are optimized for a screen size of 30 charaters wide and 11 charaters tall. 
 
 ## Enter significant figures with scientific notation
 
@@ -16,7 +16,6 @@ The `E` notation records the trailing zeros in the input text. Python converts t
 
 - Read the README in the program's folder before you run it.
 - Enter values in the units required by the equation and constants.
-- Use `*` for multiplication in typed expressions.
 - Check that the input values and model assumptions match your course problem.
 
 ## TI references

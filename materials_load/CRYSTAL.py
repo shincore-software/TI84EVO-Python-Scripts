@@ -1,12 +1,13 @@
 # Percent crystallinity
 
 # Solve one value. Densities: kg/m3. Crystallinity: percent.
-print("Densities: kg/m3. X: percent.")
+
+print("Crystallinity")
 print('X=100*rhoc*(rhos-rhoa)/\n(rhos*(rhoc-rhoa))')
-print('1: X')
-print('2: rhoc')
-print('3: rhos')
-print('4: rhoa')
+print('1: X (%)')
+print('2: rhoc (kg/m3)')
+print('3: rhos (kg/m3)')
+print('4: rhoa (kg/m3)')
 mode = input("Unknown 1-4: ")
 if mode in ("1", "2", "3", "4"):
     if mode != "1":

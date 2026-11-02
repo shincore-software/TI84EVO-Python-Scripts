@@ -1,11 +1,12 @@
 # Corrosion depth
 
 # Solve one value. x: m; m: kg; rho: kg/m3; A: m2.
-print("x=m/(rho A)")
-print('1: x')
-print('2: m')
-print('3: rho')
-print('4: A')
+print("Corrosion depth")
+print("x=m/(rho*A)")
+print('1: x (m)')
+print('2: m (kg)')
+print('3: rho (kg/m3)')
+print('4: A (m2)')
 mode = input("Unknown 1-4: ")
 if mode in ("1", "2", "3", "4"):
     if mode != "1":

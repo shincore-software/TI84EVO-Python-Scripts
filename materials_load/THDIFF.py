@@ -1,10 +1,12 @@
 # Thermal diffusivity
 
 def main():
-    print("1 a: diffusivity (m^2/s)")
-    print("2 k: conductivity (W/m/K)")
-    print("3 rho: density (kg/m^3)")
-    print("4 cp: heat cap (J/kg/K)")
+    print('Thermal diffusivity')
+    print('a=k/(rho*cp)')
+    print("1: a (m^2/s)")
+    print("2: k (W/m/K)")
+    print("3: rho (kg/m^3)")
+    print("4: cp (J/kg/K)")
     n = input("Select 1-4: ")
     if n == "1":
         u = "a"

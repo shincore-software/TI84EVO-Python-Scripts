@@ -4,11 +4,11 @@
 
 print("Amount transported")
 print("m=J*A*t")
-print('m: kg, J: kg/(m^2*s), A: m^2,\nt: s')
-print('1 m')
-print('2 J')
-print('3 A')
-print('4 t')
+
+print('1: m (kg)')
+print('2: J (kg/(m^2*s))')
+print('3: A (m^2)')
+print('4: t (s)')
 u = input("Solve: ")
 if u not in ("1", "2", "3", "4"):
     print("Bad choice")

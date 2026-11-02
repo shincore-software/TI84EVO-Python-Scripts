@@ -4,13 +4,13 @@
 
 print("Faraday law")
 print("m=I*t*M/(n*F)")
-print("m: kg, I: A, t: s, M: kg/mol")
-print("n: electrons, F=96485 C/mol")
-print('1 m')
-print('2 I')
-print('3 t')
-print('4 M')
-print('5 n')
+
+
+print('1: m (kg)')
+print('2: I (A)')
+print('3: t (s)')
+print('4: M (kg/mol)')
+print('5: n (no units)')
 u = input("Solve: ")
 if u not in ("1", "2", "3", "4", "5"):
     print("Bad choice")

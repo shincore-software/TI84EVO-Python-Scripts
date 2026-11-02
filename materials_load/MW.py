@@ -2,12 +2,15 @@
 # Solve Mw. Molecular weights: g/mol. Fractions have no units.
 from math import sqrt
 
-print("1: Mw, mole fractions")
-print("2: Mi, mole fractions")
-print("3: xi, mole fractions")
-print("4: Mw, wt fractions")
-print("5: Mi, wt fractions")
-print("6: wi, wt fractions")
+print('Weight-average mass')
+print('Mw=sum(xi*Mi^2)/sum(xi*Mi)')
+print('Mw=sum(wi*Mi)')
+print("1: Mw (g/mol)")
+print("2: Mi (g/mol)")
+print("3: xi (no units)")
+print("4: Mw (g/mol)")
+print("5: Mi (g/mol)")
+print("6: wi (no units)")
 mode = input("Select 1-6: ")
 if mode in ("1", "2", "3", "4", "5", "6"):
     n = int(input("Number of components: "))

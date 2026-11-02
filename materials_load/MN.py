@@ -3,11 +3,13 @@
 from math import sqrt
 
 AVERAGE = "Mn"
-print("Mass values: g/mol.")
-print("Fractions: no units; sum to 1.")
-print('1: Average')
-print('2: One Mi')
-print("3: One xi (use sum xi=1)")
+
+
+print('Number-average mass')
+print('Mn=sum(xi*Mi)')
+print('1: Mn (g/mol)')
+print('2: Mi (g/mol)')
+print("3: xi (no units)")
 mode = input("Select 1-3: ")
 if mode in ("1", "2", "3"):
     n = int(input("Number of components: "))

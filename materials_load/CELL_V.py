@@ -4,10 +4,10 @@
 
 print("Cell voltage")
 print("Ecell=Ecath-Ean")
-print("All potentials: V")
-print('1 Ecell')
-print('2 Ecath')
-print('3 Ean')
+
+print('1: Ecell (V)')
+print('2: Ecath (V)')
+print('3: Ean (V)')
 u = input("Solve: ")
 if u not in ("1", "2", "3"):
     print("Bad choice")

@@ -1,12 +1,14 @@
 # Heat conduction
 
 def main():
-    print("1 q: heat rate (W)")
-    print("2 k: conductivity (W/m/K)")
-    print("3 A: area (m^2)")
-    print("4 Th: hot temp (K)")
-    print("5 Tc: cold temp (K)")
-    print("6 ell: length (m)")
+    print('Steady heat conduction')
+    print('q=k*A*(Th-Tc)/ell')
+    print("1: q (W)")
+    print("2: k (W/m/K)")
+    print("3: A (m^2)")
+    print("4: Th (K)")
+    print("5: Tc (K)")
+    print("6: ell (m)")
     n = input("Select 1-6: ")
     if n == "1":
         u = "q"

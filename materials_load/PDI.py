@@ -1,10 +1,11 @@
 # Dispersity
 
 # Solve one value. Molecular weights: g/mol. PDI has no units.
-print("PDI=Mw/Mn. PDI has no units.")
-print('1: PDI')
-print('2: Mw')
-print('3: Mn')
+print("Dispersity")
+print("PDI=Mw/Mn")
+print('1: PDI (no units)')
+print('2: Mw (g/mol)')
+print('3: Mn (g/mol)')
 mode = input("Unknown 1-3: ")
 if mode in ("1", "2", "3"):
     if mode != "1":

@@ -67,7 +67,8 @@ def inverse_erfc(ratio):
     return (low + high) / 2.0
 
 
-print("Select calculation:")
+print("Error function")
+print("erfc(x)=1-erf(x)")
 print("1: erf(x) and erfc(x)")
 print("2: inverse erf from area")
 print("3: lambda from diffusion ratio")

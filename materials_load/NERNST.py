@@ -4,13 +4,13 @@
 import math
 
 
+print("Nernst potential")
 print("E=E0+RT/(nF)*ln(C)")
-print("Solve for:")
-print("1 E: potential (V)")
-print("2 E0: standard (V)")
-print("3 T: temperature (K)")
-print("4 n: electron count")
-print("5 C: activity (no units)")
+print("1: E (V)")
+print("2: E0 (V)")
+print("3: T (K)")
+print("4: n (no units)")
+print("5: C (no units)")
 u = input("Solve: ")
 if u not in ("1", "2", "3", "4", "5"):
     print("Bad choice")

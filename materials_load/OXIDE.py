@@ -1,12 +1,13 @@
 # Oxide thickness
 
 # Solve one value. x: m. dmA: kg/m2. rho: kg/m3.
-print("x: m; dmA: kg/m2; rho: kg/m3")
-print('MM and MO: g/mol. a and b:\ncounts.')
+
+
+print("Oxide thickness")
 print("x=dmA/rho*(a MM+b MO)/(b MO)")
-print('1: x')
-print('2: dmA')
-print('3: rho')
+print('1: x (m)')
+print('2: dmA (kg/m2)')
+print('3: rho (kg/m3)')
 mode = input("Unknown 1-3: ")
 if mode in ("1", "2", "3"):
     a = float(input("a: "))

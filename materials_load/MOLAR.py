@@ -4,11 +4,11 @@
 
 print("Molar concentration")
 print("C=m/(M*V)")
-print("C: mol/L, m: g, M: g/mol, V: L")
-print('1 C')
-print('2 m')
-print('3 M')
-print('4 V')
+
+print('1: C (mol/L)')
+print('2: m (g)')
+print('3: M (g/mol)')
+print('4: V (L)')
 u = input("Solve: ")
 if u not in ("1", "2", "3", "4"):
     print("Bad choice")

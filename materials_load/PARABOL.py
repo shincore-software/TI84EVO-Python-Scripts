@@ -6,11 +6,12 @@
 from math import sqrt
 
 
+print("Parabolic rate law")
 print("delta_m = sqrt(Kp * t)")
-print("Find:")
-print("1: delta_m")
-print("2: Kp")
-print("3: time t")
+
+print("1: delta_m (kg/m^2)")
+print("2: Kp (kg^2/(m^4*s))")
+print("3: t (s)")
 mode = input("Select 1, 2, or 3: ")
 
 if mode == "1":

@@ -161,3 +161,7 @@ Read [TI_AUDIT.md](TI_AUDIT.md) for the evidence, corrections, transfer limits, 
 Display text uses short print and input statements, with a maximum of 30 characters per line. Menus use at most eleven lines, including headings, spacing, and the selection prompt. Each numbered choice has its own line. Longer explanations use explicit line breaks. The eleven-line limit does not apply to calculation results. No general screen wrapper or automatic result paging is required.
 
 Select variables with menu numbers. CHAIN first asks for equation 1 or 2, then shows numbered unknowns for that equation. No variable name or unit text is required.
+
+## Menu units
+
+Menus show the equation name and formula when they fit within eleven lines with the choices and selection prompt. Variable choices use the form `1: J (kg/(m^2*s))`. Units stay beside the variable instead of in a separate unit legend. Values with no units use `(no units)`. Input prompts and results also show the fixed units. Enter numbers only.

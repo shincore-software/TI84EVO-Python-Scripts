@@ -1,10 +1,12 @@
 # Volume expansion
 
 def main():
-    print("1 dV: vol change (m^3)")
-    print("2 av: vol alpha (1/K)")
-    print("3 V0: start vol (m^3)")
-    print("4 dT: temp change (K)")
+    print('Volume thermal expansion')
+    print('dV=av*V0*dT')
+    print("1: dV (m^3)")
+    print("2: av (1/K)")
+    print("3: V0 (m^3)")
+    print("4: dT (K)")
     n = input("Select 1-4: ")
     if n == "1":
         u = "dV"

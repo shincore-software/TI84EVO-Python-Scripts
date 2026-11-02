@@ -4,14 +4,14 @@
 
 print("Fick first law")
 print("J=-D*(C2-C1)/(x2-x1)")
-print("C: kg/m^3, x: m, D: m^2/s")
-print("J: kg/(m^2*s)")
-print('1 J')
-print('2 D')
-print('3 C1')
-print('4 C2')
-print('5 x1')
-print('6 x2')
+
+
+print('1: J (kg/(m^2*s))')
+print('2: D (m^2/s)')
+print('3: C1 (kg/m^3)')
+print('4: C2 (kg/m^3)')
+print('5: x1 (m)')
+print('6: x2 (m)')
 u = input("Solve: ")
 
 if u not in ("1", "2", "3", "4", "5", "6"):
