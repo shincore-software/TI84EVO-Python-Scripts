@@ -1,6 +1,8 @@
 # TI-84 Evo Python scripts
 
-This repository contains Python programs for the TI-84 Evo. The Python App uses Python syntax with calculator-specific limits. It does not use every feature from desktop Python.
+This repository contains Python programs for the TI-84 Evo. The Python App uses Python syntax with calculator-specific limits. It does not use every feature from desktop Python.  
+  
+please note, this repository is optimized to display well the TI84 EVO. The programs will run on any enabled python enabled TI calculator, but the menus and screens are optimized for a screen size of 30 charaters wide and 11 charaters tall. 
 
 ## Enter significant figures with scientific notation
 

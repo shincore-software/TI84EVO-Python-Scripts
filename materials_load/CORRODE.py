@@ -1,6 +1,11 @@
+# Corrosion depth
+
 # Solve one value. x: m; m: kg; rho: kg/m3; A: m2.
 print("x=m/(rho A)")
-print("1: x  2: m  3: rho  4: A")
+print('1: x')
+print('2: m')
+print('3: rho')
+print('4: A')
 mode = input("Unknown 1-4: ")
 if mode in ("1", "2", "3", "4"):
     if mode != "1":

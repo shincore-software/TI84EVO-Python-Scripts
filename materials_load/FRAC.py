@@ -1,5 +1,8 @@
+# Fraction conversion
+
 # Convert mole fractions and weight fractions.
-print("1: Mole to weight  2: Weight to mole")
+print('1: Mole to weight')
+print('2: Weight to mole')
 mode = input("Select 1-2: ")
 if mode in ("1", "2"):
     n = int(input("Number of components: "))
@@ -10,8 +13,7 @@ if mode in ("1", "2"):
     fractions = []
     valid = n > 0
     for i in range(n):
-        print("Component:")
-        print(i + 1)
+        print("Component:" + "\n" + str(i + 1))
         m = float(input("Mi (g/mol): "))
         f = float(input("xi (no units): " if mode == "1" else "wi (no units): "))
         if m <= 0 or f < 0 or f > 1:
@@ -28,7 +30,7 @@ if mode in ("1", "2"):
             values.append(value)
             total = total + value
         if total <= 0:
-            print("Fractions must have a positive sum")
+            print('Fractions must have a positive\nsum')
         else:
             print("wi (no units):" if mode == "1" else "xi (no units):")
             for i in range(n):

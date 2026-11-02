@@ -1,7 +1,23 @@
+# Volume expansion
+
 def main():
-    print("dV=av*V0*dT")
-    print("SI: m^3, 1/K, m^3, K")
-    u = input("Solve for dV,av,V0,dT: ")
+    print("1 dV: vol change (m^3)")
+    print("2 av: vol alpha (1/K)")
+    print("3 V0: start vol (m^3)")
+    print("4 dT: temp change (K)")
+    n = input("Select 1-4: ")
+    if n == "1":
+        u = "dV"
+    elif n == "2":
+        u = "av"
+    elif n == "3":
+        u = "V0"
+    elif n == "4":
+        u = "dT"
+    else:
+        print("Invalid choice")
+        return
+    
     if u == "dV":
         a = float(input("av 1/K: "))
         v0 = float(input("V0 m^3: "))
@@ -37,6 +53,7 @@ def main():
     else:
         print("Unknown variable")
         return
+    
     if u in ("dV", "av") and v0 <= 0:
         print("V0 must be > 0")
         return
@@ -55,4 +72,5 @@ def main():
     elif u == "dT":
         unit = "K"
     print(u, "=", v, unit)
+
 main()

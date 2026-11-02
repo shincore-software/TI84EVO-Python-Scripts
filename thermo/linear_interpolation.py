@@ -1,3 +1,4 @@
+
 # Linear interpolation between two points.
 # Inputs: points (x0, y0), (x1, y1), and a query x between x0 and x1.
 # Output: estimated y. The program does not calculate outside the interval.
@@ -16,5 +17,4 @@ else:
         print("x is outside the points")
     else:
         y = y0 + (x - x0) * (y1 - y0) / (x1 - x0)
-        print("Interpolated y:")
-        print(y)
+        print("Interpolated y:" + "\n" + str(y))

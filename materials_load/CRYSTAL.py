@@ -1,8 +1,12 @@
+# Percent crystallinity
+
 # Solve one value. Densities: kg/m3. Crystallinity: percent.
-# c = x*s*a / (x*s-s+a)
 print("Densities: kg/m3. X: percent.")
-print("X=100 rhoc(rhos-rhoa)/(rhos(rhoc-rhoa))")
-print("1: X  2: rhoc  3: rhos  4: rhoa")
+print('X=100*rhoc*(rhos-rhoa)/\n(rhos*(rhoc-rhoa))')
+print('1: X')
+print('2: rhoc')
+print('3: rhos')
+print('4: rhoa')
 mode = input("Unknown 1-4: ")
 if mode in ("1", "2", "3", "4"):
     if mode != "1":
@@ -18,9 +22,9 @@ if mode in ("1", "2", "3", "4"):
         valid = c > a > 0 and a <= s <= c
         if valid:
             result = 100.0 * c * (s - a) / (s * (c - a))
-            print("X (%):")
-            print(result)
+            print("X (%):" + "\n" + str(result))
     elif mode == "2":
+        # c = x*s*a / (x*s-s+a)
         den = x * s - s + a
         if den == 0:
             valid = False
@@ -30,8 +34,7 @@ if mode in ("1", "2", "3", "4"):
             if x == 0 and s == a:
                 valid = False
             if valid:
-                print("rhoc (kg/m3):")
-                print(result)
+                print("rhoc (kg/m3):" + "\n" + str(result))
     elif mode == "3":
         den = c - x * (c - a)
         if den == 0:
@@ -40,8 +43,7 @@ if mode in ("1", "2", "3", "4"):
             result = c * a / den
             valid = 0 <= x <= 1 and c > a > 0 and a <= result <= c
             if valid:
-                print("rhos (kg/m3):")
-                print(result)
+                print("rhos (kg/m3):" + "\n" + str(result))
     else:
         den = c - x * s
         if den == 0:
@@ -50,9 +52,8 @@ if mode in ("1", "2", "3", "4"):
             result = c * s * (1.0 - x) / den
             valid = 0 <= x <= 1 and c > result > 0 and result <= s <= c
             if valid:
-                print("rhoa (kg/m3):")
-                print(result)
+                print("rhoa (kg/m3):" + "\n" + str(result))
     if not valid:
-        print("Invalid values or no unique result")
+        print('Invalid values or no unique\nresult')
 else:
     print("Select 1-4")

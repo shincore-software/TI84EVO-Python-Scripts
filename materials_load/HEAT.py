@@ -1,7 +1,26 @@
+# Sensible heat
+
 def main():
-    print("Q=m*cp*(Tf-Ti)")
-    print("SI: kg, J/kg/K, K, J")
-    u = input("Solve for Q,m,cp,Tf,Ti: ")
+    print("1 Q: heat (J)")
+    print("2 m: mass (kg)")
+    print("3 cp: heat cap (J/kg/K)")
+    print("4 Tf: final temp (K)")
+    print("5 Ti: start temp (K)")
+    n = input("Select 1-5: ")
+    if n == "1":
+        u = "Q"
+    elif n == "2":
+        u = "m"
+    elif n == "3":
+        u = "cp"
+    elif n == "4":
+        u = "Tf"
+    elif n == "5":
+        u = "Ti"
+    else:
+        print("Invalid choice")
+        return
+    
     if u == "Q":
         m = float(input("m kg: "))
         cp = float(input("cp J/kg/K: "))
@@ -45,6 +64,7 @@ def main():
     else:
         print("Unknown variable")
         return
+    
     if u == "Q":
         if m <= 0 or cp <= 0 or tf < 0 or ti < 0:
             print("m,cp > 0; temperatures >= 0 K")
@@ -76,4 +96,5 @@ def main():
     elif u == "Ti":
         unit = "K"
     print(u, "=", v, unit)
+
 main()

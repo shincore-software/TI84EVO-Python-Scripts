@@ -1,3 +1,4 @@
+
 # Isothermal flash solver using supplied K values.
 # Inputs: component count, feed fractions z, and equilibrium ratios K.
 # Output: vapor fraction V and liquid and vapor fractions x and y.
@@ -12,8 +13,7 @@ else:
     valid = True
     i = 0
     while i < n:
-        print("Component:")
-        print(i + 1)
+        print("Component:" + "\n" + str(i + 1))
         zi = float(input("Feed fraction z: "))
         ki = float(input("Equilibrium ratio K: "))
         z.append(zi)
@@ -24,7 +24,7 @@ else:
         i = i + 1
 
     if abs(total - 1.0) > 0.001 or not valid:
-        print("Need z sum 1 and positive K values")
+        print('Need z sum 1 and positive K\nvalues')
     else:
         lo = 0.0
         hi = 1.0
@@ -40,7 +40,7 @@ else:
         elif fhi == 0:
             V = 1.0
         elif flo * fhi > 0:
-            print("No two-phase solution for these K values")
+            print('No two-phase solution for\nthese K values')
             V = -1.0
         else:
             count = 0
@@ -60,13 +60,11 @@ else:
                 count = count + 1
             V = (lo + hi) / 2.0
         if V >= 0:
-            print("Vapor fraction V:")
-            print(V)
+            print("Vapor fraction V:" + "\n" + str(V))
             i = 0
             while i < n:
                 xi = z[i] / (1.0 + V * (K[i] - 1.0))
                 yi = K[i] * xi
-                print("Component x, y:")
-                print(xi)
+                print("Component x, y:" + "\n" + str(xi))
                 print(yi)
                 i = i + 1

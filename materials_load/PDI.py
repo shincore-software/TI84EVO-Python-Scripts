@@ -1,6 +1,10 @@
+# Dispersity
+
 # Solve one value. Molecular weights: g/mol. PDI has no units.
 print("PDI=Mw/Mn. PDI has no units.")
-print("1: PDI  2: Mw  3: Mn")
+print('1: PDI')
+print('2: Mw')
+print('3: Mn')
 mode = input("Unknown 1-3: ")
 if mode in ("1", "2", "3"):
     if mode != "1":
@@ -26,6 +30,6 @@ if mode in ("1", "2", "3"):
         print(label)
         print(result)
     else:
-        print("Check values; PDI must be at least 1")
+        print('Check values; PDI must be at\nleast 1')
 else:
     print("Select 1-3")

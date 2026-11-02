@@ -1,8 +1,14 @@
+# Molar concentration
+
 """Solve one variable in C=m/(M*V)."""
+
 print("Molar concentration")
 print("C=m/(M*V)")
 print("C: mol/L, m: g, M: g/mol, V: L")
-print("1 C 2 m 3 M 4 V")
+print('1 C')
+print('2 m')
+print('3 M')
+print('4 V')
 u = input("Solve: ")
 if u not in ("1", "2", "3", "4"):
     print("Bad choice")
@@ -57,4 +63,5 @@ else:
                     ok = False
         if ok:
             units = ["mol/L", "g", "g/mol", "L"]
-            print(names[k] + " " + units[k] + " = " + str(v[k]))
+            print(names[k] + " " + units[k] + " =")
+            print(v[k])

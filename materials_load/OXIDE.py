@@ -1,8 +1,12 @@
+# Oxide thickness
+
 # Solve one value. x: m. dmA: kg/m2. rho: kg/m3.
 print("x: m; dmA: kg/m2; rho: kg/m3")
-print("MM and MO: g/mol. a and b: counts.")
+print('MM and MO: g/mol. a and b:\ncounts.')
 print("x=dmA/rho*(a MM+b MO)/(b MO)")
-print("1: x  2: dmA  3: rho")
+print('1: x')
+print('2: dmA')
+print('3: rho')
 mode = input("Unknown 1-3: ")
 if mode in ("1", "2", "3"):
     a = float(input("a: "))
@@ -34,6 +38,6 @@ if mode in ("1", "2", "3"):
         print(label)
         print(result)
     else:
-        print("Check values; result must be positive")
+        print('Check values; result must be\npositive')
 else:
     print("Select 1-3")

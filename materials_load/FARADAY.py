@@ -1,9 +1,16 @@
+# Faraday's law
+
 """Solve one variable in Faraday's law."""
+
 print("Faraday law")
 print("m=I*t*M/(n*F)")
 print("m: kg, I: A, t: s, M: kg/mol")
 print("n: electrons, F=96485 C/mol")
-print("1 m 2 I 3 t 4 M 5 n")
+print('1 m')
+print('2 I')
+print('3 t')
+print('4 M')
+print('5 n')
 u = input("Solve: ")
 if u not in ("1", "2", "3", "4", "5"):
     print("Bad choice")
@@ -72,4 +79,5 @@ else:
                     print("No physical n")
                     ok = False
         if ok:
-            print(names[k] + " " + units[k] + " = " + str(v[k]))
+            print(names[k] + " " + units[k] + " =")
+            print(v[k])

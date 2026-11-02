@@ -3,6 +3,7 @@
 # and Antoine A, B, C for each component. Output: dew-point temperature.
 from math import exp
 
+
 P = float(input("Pressure P: "))
 n = int(input("Number of components: "))
 lo = float(input("Low temperature: "))
@@ -16,8 +17,7 @@ total = 0.0
 valid = True
 i = 0
 while i < n:
-    print("Component:")
-    print(i + 1)
+    print("Component:" + "\n" + str(i + 1))
     y.append(float(input("Vapor fraction y: ")))
     total = total + y[i]
     if y[i] < 0:
@@ -40,14 +40,14 @@ def residual(T):
     return value
 
 if n < 1 or P <= 0 or lo >= hi:
-    print("Check pressure, component count, and range")
+    print('Check pressure, component\ncount, and range')
 elif not valid or abs(total - 1.0) > 0.001:
-    print("Fractions must be non-negative and sum to 1")
+    print('Fractions must be non-negative\nand sum to 1')
 else:
     flo = residual(lo)
     fhi = residual(hi)
     if flo * fhi > 0:
-        print("Range does not bracket a solution")
+        print('Range does not bracket a\nsolution')
     else:
         count = 0
         while count < 40:
@@ -60,5 +60,4 @@ else:
                 lo = mid
                 flo = fm
             count = count + 1
-        print("Dew temperature:")
-        print((lo + hi) / 2.0)
+        print("Dew temperature:" + "\n" + str((lo + hi) / 2.0))

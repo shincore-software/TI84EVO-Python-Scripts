@@ -5,6 +5,7 @@
 
 from math import exp, log
 
+
 print("Antoine equation")
 print("1: Find pressure from T")
 print("2: Find temperature from P")
@@ -21,8 +22,7 @@ if mode == "1":
         print("T + C cannot be zero")
     else:
         P = exp(A - B / (T + C))
-        print("Pressure P:")
-        print(P)
+        print("Pressure P:" + "\n" + str(P))
 elif mode == "2":
     P = float(input("Pressure P: "))
 
@@ -34,7 +34,6 @@ elif mode == "2":
             print("Cannot solve for T")
         else:
             T = B / divisor - C
-            print("Temperature T:")
-            print(T)
+            print("Temperature T:" + "\n" + str(T))
 else:
     print("Select 1 or 2")

@@ -1,7 +1,20 @@
+# Heating power
+
 def main():
-    print("Q=P*t")
-    print("SI: J, W, s")
-    u = input("Solve for Q,P,t: ")
+    print("1 Q: heat (J)")
+    print("2 P: power (W)")
+    print("3 t: time (s)")
+    n = input("Select 1-3: ")
+    if n == "1":
+        u = "Q"
+    elif n == "2":
+        u = "P"
+    elif n == "3":
+        u = "t"
+    else:
+        print("Invalid choice")
+        return
+    
     if u == "Q":
         p = float(input("P W: "))
         t = float(input("t s: "))
@@ -23,6 +36,7 @@ def main():
     else:
         print("Unknown variable")
         return
+    
     if u == "P" and v < 0 or u == "t" and v < 0:
         print("P and t must be >= 0")
         return
@@ -44,4 +58,5 @@ def main():
     elif u == "t":
         unit = "s"
     print(u, "=", v, unit)
+
 main()

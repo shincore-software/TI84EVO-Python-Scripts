@@ -1,12 +1,16 @@
+# Nernst potential
 """Solve one variable in the Nernst equation."""
+
 import math
-print("Nernst potential")
-print("E=E0+R*T/(n*F)*ln(C)")
-print("C is activity / standard activity")
-print("Ideal activity assumed; C must be > 0")
-print("E: V, T: K, n: dimensionless")
-print("R=8.314 J/(mol*K), F=96485 C/mol")
-print("1 E 2 E0 3 T 4 n 5 C")
+
+
+print("E=E0+RT/(nF)*ln(C)")
+print("Solve for:")
+print("1 E: potential (V)")
+print("2 E0: standard (V)")
+print("3 T: temperature (K)")
+print("4 n: electron count")
+print("5 C: activity (no units)")
 u = input("Solve: ")
 if u not in ("1", "2", "3", "4", "5"):
     print("Bad choice")
@@ -72,4 +76,5 @@ else:
                 print("Result too small")
                 ok = False
         if ok:
-            print(names[k] + " " + units[k] + " = " + str(v[k]))
+            print(names[k] + " " + units[k] + " =")
+            print(v[k])

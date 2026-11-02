@@ -3,6 +3,7 @@
 # Enter the other values and gas constant R. Output: selected result.
 from math import exp, log
 
+
 print("Find value:")
 print("1: Factor")
 print("2: Liquid molar volume")
@@ -20,13 +21,12 @@ if mode == "1":
     if R == 0 or T == 0:
         print("R and T cannot be zero")
     else:
-        print("Poynting factor:")
-        print(exp(Vl * (P - Psat) / (R * T)))
+        print("Poynting factor:" + "\n" + str(exp(Vl * (P - Psat) / (R * T))))
 elif mode in ("2", "3", "4", "5"):
     F = float(input("Poynting factor: "))
     if mode == "5":
         while F <= 0 or F == 1:
-            print("Factor must be positive and not 1")
+            print('Factor must be positive and\nnot 1')
             F = float(input("Poynting factor: "))
     R = float(input("Gas constant R: "))
     T = float(input("Temperature T: "))
@@ -34,26 +34,22 @@ elif mode in ("2", "3", "4", "5"):
     P = float(input("Pressure P: "))
     Psat = float(input("Saturation pressure: "))
     if F <= 0 or R == 0 or T == 0 or Vl == 0:
-        print("Need positive factor and non-zero R, T, and Vl")
+        print('Need positive factor and\nnon-zero R, T, and Vl')
     else:
         q = R * T * log(F) / Vl
         if mode == "2":
             if P == Psat:
                 print("P and Psat must differ")
             else:
-                print("Liquid molar volume:")
-                print(R * T * log(F) / (P - Psat))
+                print("Liquid molar volume:" + "\n" + str(R * T * log(F) / (P - Psat)))
         elif mode == "3":
-            print("Pressure:")
-            print(Psat + q)
+            print("Pressure:" + "\n" + str(Psat + q))
         elif mode == "4":
-            print("Saturation pressure:")
-            print(P - q)
+            print("Saturation pressure:" + "\n" + str(P - q))
         else:
             if P == Psat:
                 print("P and Psat must differ")
             else:
-                print("Temperature:")
-                print(Vl * (P - Psat) / (R * log(F)))
+                print("Temperature:" + "\n" + str(Vl * (P - Psat) / (R * log(F))))
 else:
     print("Select 1-5")

@@ -3,6 +3,7 @@
 # Output: ln(gamma1), gamma1, ln(gamma2), and gamma2.
 from math import exp, log
 
+
 print("Model:")
 print("1: Margules 1")
 print("2: Margules 2")
@@ -67,7 +68,7 @@ else:
         b21 = float(input("b21: "))
         alpha = float(input("Alpha: "))
         if T <= 0 or R == 0:
-            print("T must be positive and R non-zero")
+            print('T must be positive and R\nnon-zero')
             ok = False
         else:
             t12 = b12 / (R * T)
@@ -84,11 +85,7 @@ else:
         lng2 = 0.0
 
     if ok and mode in ("1", "2", "3", "4", "5"):
-        print("ln gamma 1:")
-        print(lng1)
-        print("gamma 1:")
-        print(exp(lng1))
-        print("ln gamma 2:")
-        print(lng2)
-        print("gamma 2:")
-        print(exp(lng2))
+        print("ln gamma 1:" + "\n" + str(lng1))
+        print("gamma 1:" + "\n" + str(exp(lng1)))
+        print("ln gamma 2:" + "\n" + str(lng2))
+        print("gamma 2:" + "\n" + str(exp(lng2)))

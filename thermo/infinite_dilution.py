@@ -3,6 +3,7 @@
 # Output: ln(gamma infinity), gamma infinity, and Henry constant H.
 from math import exp, log
 
+
 print("Model:")
 print("1: Margules 1")
 print("2: Margules 2")
@@ -56,7 +57,7 @@ else:
         b21 = float(input("b21: "))
         alpha = float(input("Alpha: "))
         if T <= 0 or R == 0:
-            print("T must be positive and R non-zero")
+            print('T must be positive and R\nnon-zero')
             lng = 0.0
             mode = "bad"
         else:
@@ -73,10 +74,7 @@ else:
 
     if mode != "bad":
         g = exp(lng)
-        psat = float(input("Psat, same pressure units as H: "))
-        print("ln gamma infinite:")
-        print(lng)
-        print("gamma infinite:")
-        print(g)
-        print("Henry constant H:")
-        print(g * psat)
+        psat = float(input("Psat (same units as H): "))
+        print("ln gamma infinite:" + "\n" + str(lng))
+        print("gamma infinite:" + "\n" + str(g))
+        print("Henry constant H:" + "\n" + str(g * psat))

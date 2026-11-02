@@ -1,3 +1,4 @@
+
 # Henry's law solver.
 # Formula: y * P = x * H
 # Inputs: choose y, P, x, or H, then enter the other three values.
@@ -17,8 +18,7 @@ if mode == "1":
     if P == 0:
         print("P cannot be zero")
     else:
-        print("y:")
-        print(x * H / P)
+        print("y:" + "\n" + str(x * H / P))
 elif mode == "2":
     y = float(input("Vapor fraction y: "))
     x = float(input("Liquid fraction x: "))
@@ -26,8 +26,7 @@ elif mode == "2":
     if y == 0:
         print("y cannot be zero")
     else:
-        print("P:")
-        print(x * H / y)
+        print("P:" + "\n" + str(x * H / y))
 elif mode == "3":
     y = float(input("Vapor fraction y: "))
     P = float(input("Pressure P: "))
@@ -35,8 +34,7 @@ elif mode == "3":
     if H == 0:
         print("H cannot be zero")
     else:
-        print("x:")
-        print(y * P / H)
+        print("x:" + "\n" + str(y * P / H))
 elif mode == "4":
     y = float(input("Vapor fraction y: "))
     P = float(input("Pressure P: "))
@@ -44,7 +42,6 @@ elif mode == "4":
     if x == 0:
         print("x cannot be zero")
     else:
-        print("H:")
-        print(y * P / x)
+        print("H:" + "\n" + str(y * P / x))
 else:
     print("Select 1, 2, 3, or 4")

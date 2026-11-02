@@ -1,7 +1,23 @@
+# Thermal diffusivity
+
 def main():
-    print("a=k/(rho*cp)")
-    print("SI: m^2/s, W/m/K, kg/m^3, J/kg/K")
-    u = input("Solve for a,k,rho,cp: ")
+    print("1 a: diffusivity (m^2/s)")
+    print("2 k: conductivity (W/m/K)")
+    print("3 rho: density (kg/m^3)")
+    print("4 cp: heat cap (J/kg/K)")
+    n = input("Select 1-4: ")
+    if n == "1":
+        u = "a"
+    elif n == "2":
+        u = "k"
+    elif n == "3":
+        u = "rho"
+    elif n == "4":
+        u = "cp"
+    else:
+        print("Invalid choice")
+        return
+    
     if u == "a":
         k = float(input("k W/m/K: "))
         r = float(input("rho kg/m^3: "))
@@ -36,6 +52,7 @@ def main():
     else:
         print("Unknown variable")
         return
+    
     if u == "a" and v <= 0 or u == "k" and v <= 0 or u == "rho" and v <= 0 or u == "cp" and v <= 0:
         print("Properties must be > 0")
         return
@@ -60,4 +77,5 @@ def main():
     elif u == "cp":
         unit = "J/kg/K"
     print(u, "=", v, unit)
+
 main()

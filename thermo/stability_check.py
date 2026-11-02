@@ -1,3 +1,4 @@
+
 # Local binary-liquid stability check.
 # Inputs: liquid fraction x1 and second derivative of GE/RT.
 # Output: stability curvature and local stability result.
@@ -8,8 +9,7 @@ if x1 <= 0 or x1 >= 1:
 else:
     x2 = 1.0 - x1
     curvature = 1.0 / (x1 * x2) + d2
-    print("Stability curvature:")
-    print(curvature)
+    print("Stability curvature:" + "\n" + str(curvature))
     if curvature > 0:
         print("Locally stable by this test")
     else:

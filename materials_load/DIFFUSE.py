@@ -1,11 +1,15 @@
+# Diffusion
 # Solve the Arrhenius diffusion equation.
 # Formula: D = D0 * exp(-Qd / (R * T)). R is 8.314 J/(mol*K).
 # Inputs: select D, D0, Qd, T, or concentration C(x,t).
 # Use T in kelvin and Qd in J/mol. Output values include their units.
-# Approximation for erfc(z), where z is non-negative.
+
 from math import exp, log, sqrt
+
+
 R = 8.314
 def erfc_approx(z):
+    # Approximation for erfc(z), where z is non-negative.
     p = 0.3275911
     a1 = 0.254829592
     a2 = -0.284496736
@@ -17,56 +21,53 @@ def erfc_approx(z):
     if z == 0:
         return 1.0
     return poly * exp(-z * z)
+
 def main():
-    print("R =",R," J/(mol * K)")
-    print("Find value:")
-    print("1: Diffusion coefficient D")
-    print("2: Pre-exponential factor D0")
-    print("3: Activation energy Qd")
-    print("4: Temperature T")
-    print("5: Concentration C(x,t)")
-    print("6: Solve concentration equation")
+    print("1: Find D")
+    print("2: Find D0")
+    print("3: Find Qd")
+    print("4: Find T")
+    print("5: Find C(x,t)")
+    print("6: Solve C equation")
     mode = input("Select 1-6: ")
+    
     if mode == "1":
-        units = input("Units for D and D0 (example m^2/s): ")
-        D0 = float(input("D0 value: "))
+        units = "m^2/s"
+        D0 = float(input("D0 (m^2/s): "))
         Qd = float(input("Qd (J/mol): "))
         T = float(input("T (K): "))
         if D0 <= 0 or T <= 0:
             print("D0 and T must be positive")
         else:
             D = D0 * exp(-Qd / (R * T))
-            print("D (" + units + "):")
-            print(D)
+            print("D (" + units + "):" + "\n" + str(D))
     elif mode == "2":
-        units = input("Units for D and D0 (example m^2/s): ")
-        D = float(input("D value: "))
+        units = "m^2/s"
+        D = float(input("D (m^2/s): "))
         Qd = float(input("Qd (J/mol): "))
         T = float(input("T (K): "))
         if D <= 0 or T <= 0:
             print("D and T must be positive")
         else:
             D0 = D * exp(Qd / (R * T))
-            print("D0 (" + units + "):")
-            print(D0)
+            print("D0 (" + units + "):" + "\n" + str(D0))
     elif mode == "3":
-        units = input("Units for D and D0 (example m^2/s): ")
-        D = float(input("D value: "))
-        D0 = float(input("D0 value: "))
+        units = "m^2/s"
+        D = float(input("D (m^2/s): "))
+        D0 = float(input("D0 (m^2/s): "))
         T = float(input("T (K): "))
         if D <= 0 or D0 <= 0 or T <= 0:
             print("D, D0, and T must be positive")
         else:
             Qd = -R * T * log(D / D0)
-            print("Qd (J/mol):")
-            print(Qd)
+            print("Qd (J/mol):" + "\n" + str(Qd))
     elif mode == "4":
-        units = input("Units for D and D0 (example m^2/s): ")
-        D = float(input("D value: "))
-        D0 = float(input("D0 value: "))
+        units = "m^2/s"
+        D = float(input("D (m^2/s): "))
+        D0 = float(input("D0 (m^2/s): "))
         Qd = float(input("Qd (J/mol): "))
         if D <= 0 or D0 <= 0 or D == D0:
-            print("Need positive D and D0, with D different from D0")
+            print('Need positive D and D0, with D\ndifferent from D0')
         else:
             divisor = R * log(D / D0)
             if divisor == 0:
@@ -74,24 +75,21 @@ def main():
             else:
                 T = -Qd / divisor
                 if T <= 0:
-                    print("Inputs do not give a positive T")
+                    print('Inputs do not give a positive\nT')
                 else:
-                    print("T (K):")
-                    print(T)
+                    print("T (K):" + "\n" + str(T))
     elif mode == "5":
-        units = input("D units (length^2/time): ")
-        xunits = input("x length units: ")
-        tunits = input("t time units: ")
-        cunits = input("Concentration units: ")
-        D0 = float(input("D0, same units as D: "))
+        units = "m^2/s"
+        cunits = "kg/m^3"
+        D0 = float(input("D0 (m^2/s): "))
         Qd = float(input("Qd (J/mol): "))
         T = float(input("T (K): "))
-        x = float(input("Depth x: "))
-        t = float(input("Time t: "))
-        C0 = float(input("Initial concentration C0: "))
-        Cs = float(input("Surface concentration Cs: "))
+        x = float(input("Depth x (m): "))
+        t = float(input("Time t (s): "))
+        C0 = float(input("C0 (kg/m^3): "))
+        Cs = float(input("Cs (kg/m^3): "))
         if D0 <= 0 or T <= 0 or x < 0 or t <= 0:
-            print("Need D0,T,t positive and x non-negative")
+            print('Need D0,T,t positive and x\nnon-negative')
         else:
             D = D0 * exp(-Qd / (R * T))
             if D <= 0 or D * t <= 0:
@@ -100,18 +98,16 @@ def main():
                 z = x / (2.0 * sqrt(D * t))
                 ratio = erfc_approx(z)
                 C = C0 + ratio * (Cs - C0)
-                print("D (" + units + "):")
-                print(D)
-                print("C(x,t) (" + cunits + "):")
-                print(C)
+                print("D (" + units + "):" + "\n" + str(D))
+                print("C(x,t) (" + cunits + "):" + "\n" + str(C))
     elif mode == "6":
-        print("C=C0+(Cs-C0)*erfc(x/(2*sqrt(D*t)))")
-        print("D: m^2/s. x: m. t: s.")
-        print("Use one unit for C, C0, and Cs.")
-        cu = input("Concentration unit: ")
+        cu = "kg/m^3"
         names = ["C", "C0", "Cs", "x", "t", "D"]
         units = {"C":cu, "C0":cu, "Cs":cu, "x":"m", "t":"s", "D":"m^2/s"}
-        target = input("Find C, C0, Cs, x, t, or D: ")
+        for i in range(6):
+            print(str(i + 1) + ": " + names[i])
+        choice = input("Find 1-6: ")
+        target = names[int(choice) - 1] if choice in ("1", "2", "3", "4", "5", "6") else ""
         if target not in names:
             print("Invalid selection")
         else:
@@ -146,12 +142,12 @@ def main():
                     print("No unique finite answer")
             elif v["Cs"] == v["C0"]:
                 valid = False
-                print("Equal Cs and C0: no unique answer")
+                print('Equal Cs and C0: no unique\nanswer')
             else:
                 ratio = (v["C"] - v["C0"]) / (v["Cs"] - v["C0"])
                 if ratio <= 0 or ratio > 1:
                     valid = False
-                    print("Need 0 < concentration ratio <= 1")
+                    print('Need 0 < concentration ratio\n<= 1')
                 elif ratio == 1:
                     if target == "x":
                         answer = 0.0
@@ -160,7 +156,7 @@ def main():
                         print("No unique finite answer")
                 elif target != "x" and v["x"] == 0:
                     valid = False
-                    print("No solution at x=0 for this ratio")
+                    print('No solution at x=0 for this\nratio')
                 else:
                     low = 0.0
                     high = 1.0
@@ -180,14 +176,14 @@ def main():
                     else:
                         answer = (v["x"] / (2 * z)) ** 2 / v["t"]
             if valid:
-                print(target + " (" + units[target] + "):")
-                print(answer)
+                print(target + " (" + units[target] + "):" + "\n" + str(answer))
     else:
         print("Select 1-6")
+
 try:
     main()
 except OverflowError:
-    print("Result exceeds the numeric range")
+    print('Result exceeds the numeric\nrange')
 except ZeroDivisionError:
     print("Divisor is zero or below range")
 except ValueError:

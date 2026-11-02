@@ -1,13 +1,13 @@
+# Weight-average molecular weight
 # Solve Mw. Molecular weights: g/mol. Fractions have no units.
-# xi*Mi^2 - Mw*xi*Mi + b - Mw*a = 0.
 from math import sqrt
-print("Mi and Mw: g/mol. Fractions sum to 1.")
+
 print("1: Mw, mole fractions")
 print("2: Mi, mole fractions")
 print("3: xi, mole fractions")
-print("4: Mw, weight fractions")
-print("5: Mi, weight fractions")
-print("6: wi, weight fractions")
+print("4: Mw, wt fractions")
+print("5: Mi, wt fractions")
+print("6: wi, wt fractions")
 mode = input("Select 1-6: ")
 if mode in ("1", "2", "3", "4", "5", "6"):
     n = int(input("Number of components: "))
@@ -27,8 +27,7 @@ if mode in ("1", "2", "3", "4", "5", "6"):
     fractions = []
     valid = n > 0 and (not solve_avg or (0 <= k < n and known > 0))
     for i in range(n):
-        print("Component:")
-        print(i + 1)
+        print("Component:" + "\n" + str(i + 1))
         m = 0.0 if solve_m and i == k else float(input("Mi (g/mol): "))
         f = 0.0 if solve_f and i == k else float(input("xi (no units): " if mole else "wi (no units): "))
         if not (solve_m and i == k) and m <= 0:
@@ -43,7 +42,7 @@ if mode in ("1", "2", "3", "4", "5", "6"):
     if abs(sum(fractions) - 1.0) > 0.001:
         valid = False
     if not valid:
-        print("Check masses, fractions, and selection")
+        print('Check masses, fractions, and\nselection')
     else:
         if mole:
             a = 0.0
@@ -57,16 +56,14 @@ if mode in ("1", "2", "3", "4", "5", "6"):
             for i in range(n):
                 avg = avg + fractions[i] * masses[i]
         if mode in ("1", "4"):
-            print("Mw (g/mol):")
-            print(avg)
+            print("Mw (g/mol):" + "\n" + str(avg))
         elif solve_f:
             if mole:
                 predicted = avg
                 if abs(predicted - known) > 0.000001 * max(1.0, abs(known)):
                     print("Mw and fractions do not agree")
                 else:
-                    print("xi (no units):")
-                    print(fractions[k])
+                    print("xi (no units):" + "\n" + str(fractions[k]))
             elif masses[k] <= 0:
                 print("Mi must be positive")
             else:
@@ -78,10 +75,9 @@ if mode in ("1", "2", "3", "4", "5", "6"):
                 if value < 0 or value > 1 or abs(value - fractions[k]) > 0.001:
                     print("No valid wi")
                 else:
-                    print("wi (no units):")
-                    print(value)
+                    print("wi (no units):" + "\n" + str(value))
         elif fractions[k] == 0:
-            print("Zero fraction: Mi has no unique value")
+            print('Zero fraction: Mi has no\nunique value')
         elif not mole:
             other = 0.0
             for i in range(n):
@@ -91,9 +87,9 @@ if mode in ("1", "2", "3", "4", "5", "6"):
             if result <= 0:
                 print("No positive Mi")
             else:
-                print("Mi (g/mol):")
-                print(result)
+                print("Mi (g/mol):" + "\n" + str(result))
         else:
+            # xi*Mi^2 - Mw*xi*Mi + b - Mw*a = 0.
             disc = known ** 2 - 4.0 * (b - known * a) / fractions[k]
             if disc < 0:
                 print("No real Mi")
@@ -103,10 +99,8 @@ if mode in ("1", "2", "3", "4", "5", "6"):
                 if r1 <= 0:
                     print("No positive Mi")
                 else:
-                    print("Mi (g/mol):")
-                    print(r1)
+                    print("Mi (g/mol):" + "\n" + str(r1))
                     if r2 > 0 and abs(r2-r1) > 0.000001 * max(1.0, abs(r1)):
-                        print("Second valid Mi (g/mol):")
-                        print(r2)
+                        print("Second valid Mi (g/mol):" + "\n" + str(r2))
 else:
     print("Select 1-6")

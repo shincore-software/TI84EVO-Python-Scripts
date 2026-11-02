@@ -1,3 +1,4 @@
+
 # Bilinear interpolation for one rectangular grid cell.
 # Inputs: cell bounds, four corner z values, and query coordinates x and y.
 # Require x0 < x1 and y0 < y1. Output: estimated z inside the cell.
@@ -31,5 +32,4 @@ else:
     else:
         answer = bilinear(x0, x1, y0, y1,
                           z00, z10, z01, z11, x, y)
-        print("Interpolated z:")
-        print(answer)
+        print("Interpolated z:" + "\n" + str(answer))

@@ -1,3 +1,4 @@
+
 # Ideal or non-ideal dew pressure solver.
 # Formula: 1/P = sum(y_i / (gamma_i * Psat_i))
 # Inputs: component count, y, gamma, and Psat for each component.
@@ -13,8 +14,7 @@ else:
     total_y = 0.0
     i = 0
     while i < n:
-        print("Component:")
-        print(i + 1)
+        print("Component:" + "\n" + str(i + 1))
         yi = float(input("y: "))
         gi = float(input("gamma: "))
         pi = float(input("Psat: "))
@@ -26,7 +26,7 @@ else:
 
     print("Find value:")
     print("1: Total pressure P")
-    print("2: One component y, gamma, or Psat")
+    print('2: One component y, gamma, or\nPsat')
     mode = input("Select 1 or 2: ")
 
     if mode == "1":
@@ -45,8 +45,7 @@ else:
             if den <= 0:
                 print("Need positive gamma and Psat")
             else:
-                print("Dew pressure:")
-                print(1.0 / den)
+                print("Dew pressure:" + "\n" + str(1.0 / den))
     elif mode == "2":
         k = int(input("Component number: ")) - 1
         if k < 0 or k >= n:
@@ -66,20 +65,17 @@ else:
                 i = i + 1
             rem = 1.0 / P - other
             if target == "1":
-                print("y:")
-                print(rem * gamma[k] * psat[k])
+                print("y:" + "\n" + str(rem * gamma[k] * psat[k]))
             elif target == "2":
                 if rem == 0 or psat[k] == 0:
                     print("Cannot solve for gamma")
                 else:
-                    print("gamma:")
-                    print(y[k] / (rem * psat[k]))
+                    print("gamma:" + "\n" + str(y[k] / (rem * psat[k])))
             elif target == "3":
                 if rem == 0 or gamma[k] == 0:
                     print("Cannot solve for Psat")
                 else:
-                    print("Psat:")
-                    print(y[k] / (rem * gamma[k]))
+                    print("Psat:" + "\n" + str(y[k] / (rem * gamma[k])))
             else:
                 print("Select 1, 2, or 3")
     else:

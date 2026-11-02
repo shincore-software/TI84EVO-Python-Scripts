@@ -1,10 +1,19 @@
+# Fick's first law
+
 """Solve one variable in Fick's first law."""
+
 print("Fick first law")
 print("J=-D*(C2-C1)/(x2-x1)")
 print("C: kg/m^3, x: m, D: m^2/s")
 print("J: kg/(m^2*s)")
-print("1 J 2 D 3 C1 4 C2 5 x1 6 x2")
+print('1 J')
+print('2 D')
+print('3 C1')
+print('4 C2')
+print('5 x1')
+print('6 x2')
 u = input("Solve: ")
+
 if u not in ("1", "2", "3", "4", "5", "6"):
     print("Bad choice")
 else:
@@ -78,4 +87,5 @@ else:
                     ok = False
         if ok:
             units = ["kg/(m^2*s)", "m^2/s", "kg/m^3", "kg/m^3", "m", "m"]
-            print(names[k] + " " + units[k] + " = " + str(v[k]))
+            print(names[k] + " " + units[k] + " =")
+            print(v[k])

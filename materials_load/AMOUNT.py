@@ -1,8 +1,14 @@
+# Transported mass
+
 """Solve one variable in m=J*A*t."""
+
 print("Amount transported")
 print("m=J*A*t")
-print("m: kg, J: kg/(m^2*s), A: m^2, t: s")
-print("1 m 2 J 3 A 4 t")
+print('m: kg, J: kg/(m^2*s), A: m^2,\nt: s')
+print('1 m')
+print('2 J')
+print('3 A')
+print('4 t')
 u = input("Solve: ")
 if u not in ("1", "2", "3", "4"):
     print("Bad choice")
@@ -49,4 +55,5 @@ else:
                 ok = False
     if ok:
         units = ["kg", "kg/(m^2*s)", "m^2", "s"]
-        print(names[k] + " " + units[k] + " = " + str(v[k]))
+        print(names[k] + " " + units[k] + " =")
+        print(v[k])

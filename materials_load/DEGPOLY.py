@@ -1,7 +1,11 @@
+# Degree of polymerization
+
 # Solve M = DP * Mbar. Use one average type throughout.
-print("Use Mn with DPn or Mw with DPw.")
-print("Mass values: g/mol. DP: no units.")
-print("1: DP  2: M  3: Mbar")
+print('Use Mn with DPn or Mw with\nDPw.')
+print('Mass values: g/mol. DP: no\nunits.')
+print('1: DP')
+print('2: M')
+print('3: Mbar')
 mode = input("Select 1-3: ")
 if mode in ("1", "2", "3"):
     valid = True
@@ -12,7 +16,8 @@ if mode in ("1", "2", "3"):
         M = float(input("M (g/mol): "))
         valid = valid and M > 0
     if mode != "3":
-        print("1: Enter Mbar  2: Mer mixture")
+        print('1: Enter Mbar')
+        print('2: Mer mixture')
         method = input("Select 1 or 2: ")
         if method == "1":
             Mbar = float(input("Mbar (g/mol): "))
@@ -33,15 +38,12 @@ if mode in ("1", "2", "3"):
             valid = False
     if not valid:
         print("Need positive masses and DP.")
-        print("Fractions: non-negative, sum 1.")
+        print('Fractions: non-negative, sum\n1.')
     elif mode == "1":
-        print("DP (no units):")
-        print(M / Mbar)
+        print("DP (no units):" + "\n" + str(M / Mbar))
     elif mode == "2":
-        print("M (g/mol):")
-        print(DP * Mbar)
+        print("M (g/mol):" + "\n" + str(DP * Mbar))
     else:
-        print("Mbar (g/mol):")
-        print(M / DP)
+        print("Mbar (g/mol):" + "\n" + str(M / DP))
 else:
     print("Select 1-3")

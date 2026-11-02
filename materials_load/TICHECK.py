@@ -1,5 +1,7 @@
+# TI-Python feature check
 # Run this test on the target calculator before the solvers.
 from math import exp, log, sqrt, sin, asin, radians, degrees
+
 
 print("TI runtime check")
 print("Enter 2 when asked.")

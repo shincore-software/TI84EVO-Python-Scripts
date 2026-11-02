@@ -1,3 +1,4 @@
+
 # Temperature adjustment of GE/RT for constant excess enthalpy.
 # Inputs: gas constant R, start and end temperatures, start GE/RT, and HE.
 # Output: estimated end GE/RT. Assumes HE is constant.
@@ -11,5 +12,4 @@ if R == 0 or T0 == 0 or T1 == 0:
     print("R, T0, and T1 cannot be zero")
 else:
     g1 = g0 + HE / R * (1.0 / T1 - 1.0 / T0)
-    print("Estimated end GE/RT:")
-    print(g1)
+    print("Estimated end GE/RT:" + "\n" + str(g1))

@@ -5,13 +5,24 @@ from contextlib import redirect_stdout
 from io import StringIO
 from math import log
 
-ROOT = Path(__file__).resolve().parents[1] / "Materials"
+ROOT = Path(__file__).resolve().parents[1] / "materials_load"
+FILES = {'amount_transported': 'AMOUNT', 'cell_voltage': 'CELL_V', 'polymer_chain_length': 'CHAIN', 'heat_conduction': 'CONDUCT', 'corrosion_depth': 'CORRODE', 'percent_crystallinity': 'CRYSTAL', 'degree_of_polymerization': 'DEGPOLY', 'diffusion': 'DIFFUSE', 'erf_solver': 'ERF', 'faraday_law': 'FARADAY', 'fick_first_law': 'FICK', 'fraction_conversion': 'FRAC', 'sensible_heat': 'HEAT', 'latent_heat': 'LATENT', 'linear_expansion': 'LINEXP', 'number_average_molecular_weight': 'MN', 'molar_concentration': 'MOLAR', 'weight_average_molecular_weight': 'MW', 'nernst_potential': 'NERNST', 'oxide_thickness': 'OXIDE', 'parabolic_rate_law': 'PARABOL', 'dispersity': 'PDI', 'heating_power': 'POWER', 'thermal_penetration': 'THDEPTH', 'thermal_diffusivity': 'THDIFF', 'volume_expansion': 'VOLEXP'}
 
 
 def run(file, answers):
     output = StringIO()
-    with patch("builtins.input", side_effect=[str(x) for x in answers]), redirect_stdout(output):
-        exec(compile((ROOT / (file + ".py")).read_text(), file, "exec"), {})
+    values = iter(str(x) for x in answers)
+    last_line = [0]
+    def reply(prompt):
+        lines = output.getvalue().splitlines()
+        if prompt.startswith(("Select", "Find", "Unknown", "Equation", "Solve")):
+            assert len(lines) - last_line[0] + 1 <= 11, (file, prompt, lines[last_line[0]:])
+        last_line[0] = len(lines)
+        assert len(prompt) <= 30, prompt
+        return next(values)
+    with patch("builtins.input", side_effect=reply), redirect_stdout(output):
+        exec(compile((ROOT / (FILES[file] + ".py")).read_text(), file, "exec"), {})
+    assert all(len(line) <= 30 for line in output.getvalue().splitlines()), (file, output.getvalue())
     return output.getvalue()
 
 
@@ -56,16 +67,18 @@ thermal = {
 }
 for file, values in thermal.items():
     for target, expected in values.items():
-        selection = "a" if target == "alpha" else target
+        selection = str(list(values).index(target) + 1)
         def answer(prompt):
-            if prompt.startswith("Solve"):
+            assert len(prompt) <= 30, prompt
+            if prompt.startswith("Select"):
                 return selection
             key = prompt.split()[0]
             assert key != target, (file, target, prompt)
             return str(values[key])
         output = StringIO()
         with patch("builtins.input", side_effect=answer), redirect_stdout(output):
-            exec(compile((ROOT / (file+".py")).read_text(), file, "exec"), {})
+            exec(compile((ROOT / (FILES[file] + ".py")).read_text(), file, "exec"), {})
+        assert all(len(line) <= 30 for line in output.getvalue().splitlines()), (file, output.getvalue())
         actual = result(output.getvalue())
         assert abs(actual-expected) < 1e-8*max(1, abs(expected)), (file, target, output.getvalue())
         count += 1
@@ -80,33 +93,33 @@ for file, inputs, phrase in [
     ("nernst_potential", [4,.5,.5,300,1], "No unique n"),
     ("fick_first_law", [1,-1,3,1,0,1], "D must"),
     ("percent_crystallinity", [2,0,800,800], "no unique"),
-    ("sensible_heat", ["m",100,1,300,300], "No unique"),
-    ("heat_conduction", ["q",3,2,500,300,-1], "ell > 0"),
+    ("sensible_heat", [2,100,1,300,300], "No unique"),
+    ("heat_conduction", [1,3,2,500,300,-1], "ell > 0"),
 ]:
-    assert phrase in run(file, inputs), file
+    assert phrase in " ".join(run(file, inputs).split()), file
     count += 1
-# Cover the earlier Materials programs as well as the new solvers.
+# Cover the earlier programs as well as the new solvers.
 for file, inputs, expected in [
     ("degree_of_polymerization", [2,100,1,50],5000),
     ("number_average_molecular_weight", [1,2,100,.5,200,.5],150),
     ("parabolic_rate_law", [1,4,9],6),
-    ("polymer_chain_length", [2,"N",10,1],100),
-    ("diffusion", [6,"u","C",0,100,.002,1,1e-6],15.7299207),
+    ("polymer_chain_length", [2,3,10,1],100),
+    ("diffusion", [6,1,0,100,.002,1,1e-6],15.7299207),
     ("erf_solver", [3,1e-20],6.60279566),
-    ("inverse_erf_solver", [2,1e-20],6.60279566),
-    ("inverse_erf_solver", [2,1],0),
+    ("erf_solver", [3,1e-20],6.60279566),
+    ("erf_solver", [3,1],0),
 ]:
     actual = result(run(file,inputs))
     assert abs(actual-expected) < 1e-6*max(1,abs(expected)), (file,actual)
     count += 1
 for file, inputs, phrase in [
-    ("volume_expansion", ["V0",-1,1,1], "V0 must"),
-    ("diffusion", [2,"m2/s",1,1e9,1], "numeric range"),
-    ("diffusion", [5,"m2/s","m","s","u",1,1e9,1,.1,1,0,1], "numeric range"),
+    ("volume_expansion", [3,-1,1,1], "V0 must"),
+    ("diffusion", [2,1,1e9,1], "numeric range"),
+    ("diffusion", [5,1,1e9,1,.1,1,0,1], "numeric range"),
     ("fraction_conversion", [1,100000], "1 to 20"),
 ]:
-    assert phrase in run(file,inputs),file
+    assert phrase in " ".join(run(file,inputs).split()),file
     count += 1
 for file in ROOT.glob("*.py"):
     compile(file.read_text(), str(file), "exec")
-print(str(count) + " checks passed. All Materials files compile.")
+print(str(count) + " checks passed. All materials_load files compile.")
